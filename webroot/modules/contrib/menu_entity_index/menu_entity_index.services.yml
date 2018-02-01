@@ -1,0 +1,16 @@
+services:
+  menu_entity_index.tracker:
+    class: Drupal\menu_entity_index\Tracker
+    arguments:
+      - '@config.factory'
+      - '@database'
+      - '@entity.repository'
+      - '@entity_type.manager'
+      - '@entity.query'
+      - '@path_processor_manager'
+      - '@router'
+  menu_entity_index.views_data:
+    class: Drupal\menu_entity_index\ViewsData\MenuEntityIndex
+    arguments:
+      - '@entity_type.manager'
+      - '@menu_entity_index.tracker'
