@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Add our config to the default configuration for Rest Menu Items.
+ */
+function rest_menu_items_update_8200() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('rest_menu_items.config');
+  $config->set('output_values', [
+    'key',
+    'title',
+    'description',
+    'uri',
+    'alias',
+    'external',
+    'absolute',
+    'relative',
+    'existing',
+    'weight',
+    'expanded',
+    'enabled',
+    'uuid',
+    'options',
+  ]);
+  $config->save(TRUE);
+}
