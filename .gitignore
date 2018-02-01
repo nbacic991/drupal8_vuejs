@@ -1,0 +1,12 @@
+# MCI ignore files
+
+# IDE
+/.idea/
+
+# Docker
+/runtime/
+
+# OS
+.DS-Store
+
+node_modules/

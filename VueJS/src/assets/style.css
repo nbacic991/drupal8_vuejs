@@ -1,0 +1,7 @@
+.movies {
+    display: flex;
+    justify-content: space-between;
+}
+.single-movie {
+    flex-basis: 33%;
+}

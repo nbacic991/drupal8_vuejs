@@ -1,0 +1,22 @@
+# MCI-Drupal build.make.yml v1.1 see details in docs/install-drupal.md
+# 2017 (C) @MacMladen
+
+core: "8.x"
+api: 2
+projects:
+  # Core
+  - drupal
+  # Modules
+  ## Development
+  - devel
+  ## Admin
+  - admin_toolbar
+  - module_filter
+  ## Layout
+  - paragraphs
+  ## Other
+  - webform
+
+defaults:
+  projects:
+    subdir: "contrib"

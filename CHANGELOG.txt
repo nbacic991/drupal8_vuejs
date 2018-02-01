@@ -1,0 +1,11 @@
+0.x Release
+
+development and e
+
+1.0 Release
+
+First working release, was compatible with Docker4Drupal 1.x version
+
+1.1 Release
+
+Uses new containers, support traefik anme resolution and own name resolution based on jwilder/nginx-proxy solution
