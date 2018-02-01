@@ -8,7 +8,6 @@
             <p><strong>Description : </strong></p>
             <p>{{movie.body}}</p>
             <br>
-            <!-- <p><strong>Description : </strong><br>{{movie.body}}</p> -->
         </div>
     </div>
 </div>
