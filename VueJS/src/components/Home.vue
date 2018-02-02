@@ -1,7 +1,7 @@
 <template>
   <div class="front">
       <h1>This is my homepage</h1>
-      <div v-for="item in items">
+      <div v-for="item in items" :key="item.body">
         <p>{{item.body}}</p>
         <!-- <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_image" /> -->
         <img v-bind:src="'http://drupal8vue.dev.loc' + item.field_movie_poster" />
