@@ -1,7 +1,7 @@
 <template>
 <div >
     <h1>This is my movies page</h1>
-    <input type="text" v-model="search" placeholder="Search movies">
+    <input type="text" v-model="search" placeholder="Search by title">
     <div class="movies">
         <div v-for="movie in filteredMovies" :key="movie.title" class="single-movie">
             <p><strong>Title:</strong><br> {{movie.title}}</p>
@@ -25,13 +25,15 @@
 
 <script>
 import axios from 'axios'
+import VuePaginator from 'vuejs-paginator'
+
 
 export default {
     data () {
       return {
         movies: [],
         endpoint: 'http://drupal8vue.dev.loc/api/movies/',
-        search: ''
+        search: '',
       }
     },
 
