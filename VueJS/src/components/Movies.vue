@@ -5,7 +5,7 @@
     <div class="movies">
         <div v-for="movie in filteredMovies" :key="movie.title" class="single-movie">
             <p><strong>Title:</strong><br> {{movie.title}}</p>
-            <router-link :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.title">
+            <router-link :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.nid">
                 <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_movie_poster" />
             </router-link>
             <p><strong>Description : </strong></p>
@@ -25,7 +25,7 @@
 
 <script>
 import axios from 'axios'
-import VuePaginator from 'vuejs-paginator'
+// import VuePaginator from 'vuejs-paginator'
 
 
 export default {

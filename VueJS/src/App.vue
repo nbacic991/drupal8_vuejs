@@ -1,11 +1,7 @@
 <template>
   <div id="app">
     <Navigation />
-    <router-view/>
-    
-    <!-- <router-link to="/">Home</router-link>
-    <router-link to="movies">Movies</router-link> -->
-   
+    <router-view/> 
   </div>
 </template>
 
@@ -13,15 +9,13 @@
 import Home from './components/Home'
 import Movies from './components/Movies'
 import Navigation from './components/Navigation'
-import Contact from './components/Contact'
 
 export default {
   name: 'App',
   components: {
     Home,
     Movies,
-    Navigation,
-    Contact
+    Navigation
   }
 }
 </script>
