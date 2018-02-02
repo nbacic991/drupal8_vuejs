@@ -1,10 +1,13 @@
 <template>
 <div >
     <h1>This is my movies page</h1>
+    <input type="text" v-model="search" placeholder="Search movies">
     <div class="movies">
-        <div v-for="movie in movies" :key="movie.title" class="single-movie">
+        <div v-for="movie in filteredMovies" :key="movie.title" class="single-movie">
             <p><strong>Title:</strong><br> {{movie.title}}</p>
-            <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_movie_poster" />
+            <router-link :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.title">
+                <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_movie_poster" />
+            </router-link>
             <p><strong>Description : </strong></p>
             <p>{{movie.body}}</p>
             <router-link
@@ -28,6 +31,7 @@ export default {
       return {
         movies: [],
         endpoint: 'http://drupal8vue.dev.loc/api/movies/',
+        search: ''
       }
     },
 
@@ -35,6 +39,13 @@ export default {
       this.getAllMovies();
     },
 
+    computed: {
+        filteredMovies: function() {
+            return this.movies.filter((movie) => {
+                return movie.title.match(this.search);
+            });
+        }
+    },
     methods: {
       getAllMovies() {
         axios.get(this.endpoint)

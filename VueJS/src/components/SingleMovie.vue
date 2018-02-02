@@ -1,11 +1,12 @@
 <template>
 <div >
-    <h1>This is my single movies page</h1>
-     <div class="movie" v-if="movie[0]">
-    <h1 class="movie__title">{{ movie[0].title }}</h1>
-    <p class="movie__body">{{ movie[0].body }}</p>
-    <img v-bind:src="'http://drupal8vue.dev.loc' + movie[0].field_movie_poster" />
-  </div>
+    <div class="movie" v-if="movie[0]">
+        <h1 class="movie__title">{{ movie[0].title }}</h1>
+        <p class="movie__body">{{ movie[0].body }}</p>
+        <img v-bind:src="'http://drupal8vue.dev.loc' + movie[0].field_movie_poster" />
+        <br>
+        <router-link to="/movies">Go back</router-link>
+    </div>
 </div>
 </template>
 
