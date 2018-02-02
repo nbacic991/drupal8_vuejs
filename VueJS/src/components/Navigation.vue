@@ -29,6 +29,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss" scoped>
 li {
     display: inline-block;
@@ -42,10 +43,4 @@ li {
         color: #000;
     }
 }
-</style>
-
-
-
-
-
 </style>

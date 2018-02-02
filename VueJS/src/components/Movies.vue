@@ -7,6 +7,7 @@
             <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_movie_poster" />
             <p><strong>Description : </strong></p>
             <p>{{movie.body}}</p>
+            <a v-bind:href="'http://drupal8vue.dev.loc/api/movies/' + movie.nid">Read More</a>
             <br>
         </div>
     </div>
@@ -15,7 +16,7 @@
 
 <script>
 
-const url = "http://drupal8vue.dev.loc/api/movies";
+const url = "http://drupal8vue.dev.loc/api/movies/";
 
 export default {
     
@@ -23,6 +24,7 @@ export default {
       return {
           movies: [],
       }
+      props: true
     },
     mounted() {
       fetch(url)

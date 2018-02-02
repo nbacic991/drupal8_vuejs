@@ -13,13 +13,15 @@
 import Home from './components/Home'
 import Movies from './components/Movies'
 import Navigation from './components/Navigation'
+import Contact from './components/Contact'
 
 export default {
   name: 'App',
   components: {
     Home,
     Movies,
-    Navigation    
+    Navigation,
+    Contact
   }
 }
 </script>
