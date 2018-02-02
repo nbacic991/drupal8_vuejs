@@ -7,34 +7,47 @@
             <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_movie_poster" />
             <p><strong>Description : </strong></p>
             <p>{{movie.body}}</p>
-            <a v-bind:href="'http://drupal8vue.dev.loc/api/movies/' + movie.nid">Read More</a>
+            <router-link
+            active-class="is-active"
+            class="link"
+            :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.title">
+          Read More ...
+        </router-link>
             <br>
         </div>
+        
     </div>
 </div>
 </template>
 
 <script>
-
-const url = "http://drupal8vue.dev.loc/api/movies/";
+import axios from 'axios'
 
 export default {
-    
-    data: function() {
+    data () {
       return {
-          movies: [],
+        movies: [],
+        endpoint: 'http://drupal8vue.dev.loc/api/movies/',
       }
-      props: true
-    },
-    mounted() {
-      fetch(url)
-        .then(response => response.json())
-        .then((data) => {
-          this.movies = data;
-        })
     },
 
-}
+    created() {
+      this.getAllMovies();
+    },
+
+    methods: {
+      getAllMovies() {
+        axios.get(this.endpoint)
+          .then(response => {
+            this.movies = response.data;
+          })
+          .catch(error => {
+            console.log('-----error-------');
+            console.log(error);
+          })
+      }
+    }
+  }
 </script>
 
 <style scoped>

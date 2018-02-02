@@ -25,9 +25,10 @@ export default new Router({
       component: Contact
     },
     {
-      path: '/movies/3',
-      name: 'SingleMovie',
-      component: SingleMovie
+      path: '/movies/:id',
+      name: 'movie',
+      component: SingleMovie,
+      props: true,
     }
   ]
 })
