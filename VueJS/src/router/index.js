@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Movies from '@/components/Movies'
 import SingleMovie from '@/components/SingleMovie'
+import CreateMovie from '@/components/CreateMovie'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       name: 'movie',
       component: SingleMovie,
       props: true,
+    },
+    {
+      path: '/create',
+      name: 'Create Movie',
+      component: CreateMovie
     }
   ]
 })

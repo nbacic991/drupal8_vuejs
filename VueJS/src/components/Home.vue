@@ -1,11 +1,19 @@
 <template>
   <div class="front">
-      <h1>This is my homepage</h1>
-      <div v-for="item in items" :key="item.body">
-        <p>{{item.body}}</p>
-        <!-- <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_image" /> -->
+      <aside>
+        <h2>Lastest added movies</h2>
+        <div v-for="item in items" :key="item.nid" class="single-movie">
         <img v-bind:src="'http://drupal8vue.dev.loc' + item.field_movie_poster" />
+        <h3>{{item.title}}</h3>
+        <p>{{item.body}}</p>
       </div>
+      </aside>
+      <main>
+        
+      </main>
+      <aside>
+
+      </aside>
   </div>
 </template>
 
@@ -30,6 +38,28 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.front  {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-column-gap: 20px;
+  aside {
+    background-color: red;
+    .single-movie {
+      padding: 30px;
+      overflow: hidden;
+      img {
+        float: left;
+        max-width: 100px;
+        margin-right: 10px;
+      }
+      p {
+        padding: 10px;
+      }
+    }
+  }
+  main {
+    background-color: blue;
+  }
+}
 </style>
