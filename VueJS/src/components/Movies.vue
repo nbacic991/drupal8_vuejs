@@ -25,8 +25,6 @@
 
 <script>
 import axios from 'axios'
-// import VuePaginator from 'vuejs-paginator'
-
 
 export default {
     data () {
@@ -63,7 +61,7 @@ export default {
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .movies {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -73,5 +71,12 @@ export default {
     background: rgba(233, 213,87, 0.3);
     padding: 10px;
     margin: 10px;
+}
+input {
+	border: solid 1px #e8e8e8;
+	font-family: 'Roboto', sans-serif;
+	padding: 10px 7px;
+	margin-bottom: 15px;
+	outline: none;
 }
 </style>

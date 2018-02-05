@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Movies from '@/components/Movies'
 import SingleMovie from '@/components/SingleMovie'
-import CreateMovie from '@/components/CreateMovie'
+import Contact from '@/components/Contact'
+import Actors from '@/components/Actors'
+import SingleActor from '@/components/SingleActor'
 
 Vue.use(Router)
 
@@ -26,9 +28,20 @@ export default new Router({
       props: true,
     },
     {
-      path: '/create',
-      name: 'Create Movie',
-      component: CreateMovie
+      path: '/contact',
+      name: 'contact',
+      component: Contact
+    },
+    {
+      path: '/actors',
+      name: 'actors',
+      component: Actors
+    },
+    {
+      path: '/actors/:id',
+      name: 'actor',
+      component: SingleActor,
+      props: true,
     }
   ]
 })
