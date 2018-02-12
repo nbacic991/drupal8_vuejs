@@ -2,9 +2,9 @@
 <div >
     <h1>This is my movies page</h1>
     <input type="text" v-model="search" placeholder="Search by title">
-    <div class="movies">
+    <div class="movies container">
         <div v-for="movie in filteredMovies" :key="movie.title" class="single-movie">
-            <p><strong>Title:</strong><br> {{movie.title}}</p>
+            <p class="title">{{movie.title}}</p>
             <router-link :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.nid">
                 <img v-bind:src="'http://drupal8vue.dev.loc' + movie.field_movie_poster" />
             </router-link>
@@ -61,7 +61,7 @@ export default {
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" src="bulma" scoped>
 .movies {
     display: grid;
     grid-template-columns: repeat(3,1fr);
