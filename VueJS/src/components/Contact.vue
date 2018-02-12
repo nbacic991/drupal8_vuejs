@@ -40,10 +40,10 @@ export default {
 			mail:'',
 			subject:'',
 			message:'',
-			headers: {
-			'Authorization': 'Basic YWRtaW46YWRtaW4=',
-			'Content-Type': 'application/json'
-			}
+			// headers: {
+			// 'Authorization': 'Basic YWRtaW46YWRtaW4=',
+			// 'Content-Type': 'application/json'
+			// }
 		}
 	},
 	methods: {
