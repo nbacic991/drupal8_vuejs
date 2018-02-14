@@ -1,29 +1,37 @@
 <template>
-<div>
-    <h1>This is my actors page</h1>
-    <input type="text" v-model="search" placeholder="Search by title">
+<div class="container">
+    <div class="control">
+        <input class="input" type="text" v-model="search" placeholder="Search by title">
+    </div>
     <div class="actors">
-        <div v-for="actor in filteredActors" :key="actor.title" class="single-actor">
+        <div v-for="actor in filteredActors" :key="actor.nid" class="single-actor">
             <router-link :to="{ name: 'actor', params: { id: actor.nid } }" :key="actor.nid">
-                <img v-bind:src="'http://drupal8vue.dev.loc' + actor.field_actor_image" />
+            <img v-bind:src="'http://drupal8vue.dev.loc' + actor.field_actor_image" />
             </router-link>
             <p><strong>Name:</strong>{{actor.title}}</p>
             <p><strong>Short bio: </strong></p>
             <p>{{actor.body}}</p>
             <router-link
-            class="link"
-            :to="{ name: 'actor', params: { id: actor.nid } }" :key="actor.title">
-          Read full bio...
-        </router-link>
+                class="link"
+                :to="{ name: 'actor', params: { id: actor.nid } }" :key="actor.title">
+                Read full bio...
+            </router-link>
             <br>
         </div>
-        
+        <div class="text-center" v-show="actorsLoading">
+            Loading...
+        </div>
     </div>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
+import InfiniteLoading from 'vue-infinite-loading';
+
+/**
+ * Declaring variables
+ */
 
 export default {
     data () {
@@ -36,17 +44,27 @@ export default {
 
     created() {
       this.getAllActors();
+      window.addEventListener('scroll', this.handleScroll)
     },
-
+    components: {
+        InfiniteLoading,
+    },
     computed: {
         filteredActors: function() {
             return this.actors.filter((actor) => {
                 return actor.title.match(this.search);
             });
-        }
+        },
     },
     methods: {
-      getAllActors() {
+        handleScroll () {
+            if (document.body.scrollHeight - window.innerHeight - document.body.scrollTop <= 5) {
+                if (this.nextPage != null) {
+                this.getPosts(this.nextPage)
+                }
+            }
+        },
+        getAllActors() {
         axios.get(this.endpoint)
           .then(response => {
             this.actors = response.data;
@@ -55,29 +73,18 @@ export default {
             console.log('-----error-------');
             console.log(error);
           })
-      }
+        }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" src="bulma" scoped>
 .actors {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-column-gap: 20px;
-}
-.single-actor {
-    margin: 30px;
-}
-input {
-	border: solid 1px #e8e8e8;
-	font-family: 'Roboto', sans-serif;
-	padding: 10px 7px;
-	margin-bottom: 15px;
-	outline: none;
-}
-.link {
-    text-decoration: none;
-    font-weight: normal;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .single-actor {
+        flex-basis: 24%;
+    }
 }
 </style>

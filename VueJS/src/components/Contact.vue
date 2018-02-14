@@ -1,26 +1,26 @@
 <template>
-  <div id="contact-form" class="contact-form">
+  <div id="contact-form" class="contact-form container">
 		<h1 class="contact-form_title">Contact Form</h1>
 		<div class="separator"></div>
 
 		<form id="contact_form"  v-on:submit.prevent="sendMessage" action="">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input v-model="name" class="form-control" name="name" type="text" />
+            <div class="field">
+                <label class="label" for="name">Name:</label>
+                <input  class="input" v-model="name" name="name" type="text" />
             </div>
-            <div class="form-group">
-                <label for="mail">Email</label>
-                <input v-model="mail" class="form-control" name="mail" type="mail" />
+            <div class="field">
+                <label class="label" for="mail">Email</label>
+                <input  class="input" v-model="mail" name="mail" type="mail" />
             </div>
-			<div class="form-group">
-                <label for="subject">Subject</label>
-                <input v-model="subject" class="form-control" name="subject" type="mail" />
+			<div class="field">
+                <label class="label" for="subject">Subject</label>
+                <input  class="input" v-model="subject" name="subject" type="mail" />
             </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea v-model="message" class="form-control" name="message"></textarea>
+            <div class="field">
+                <label class="label" for="message">Message</label>
+                <textarea class="textarea" v-model="message" name="message"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="button">Send</button>
 </form>
 	</div>
 
@@ -31,29 +31,31 @@ import axios from 'axios'
 import VueResource from 'vue-resource'
 
 
+
 export default {
     
     data() {
         return {
 			endpoint: 'http://drupal8vue.dev.loc/contact_message?_format=json',
-			name: '',
-			mail:'',
-			subject:'',
-			message:'',
-			// headers: {
-			// 'Authorization': 'Basic YWRtaW46YWRtaW4=',
-			// 'Content-Type': 'application/json'
-			// }
+			name: 'Nemanja Bacic',
+			mail: 'example@example.com',
+			subject: 'Da vidimo dali vueJS radi',
+			message: 'Lorem ipsum dolor sit amet'
 		}
 	},
 	methods: {
       	sendMessage() {
-			axios.post(this.endpoint, {
-			"contact_form":[{"target_id":"feedback"}],
-			"name":[{"value":this.name}],
-			"mail":[{"value":this.mail}],
-			"subject":[{"value":this.subject}],
-			"message":[{"value":this.message}]
+			axios.post(this.endpoint, { 
+				headers: {
+				'Authorization': 'Basic YWRtaW46YWRtaW4=',
+				'Content-Type': 'application/hal+json'
+				},
+				"contact_form":[{"target_id":"feedback"}],
+				"name":[{"value":this.name}],
+				"mail":[{"value":this.mail}],
+				"subject":[{"value":this.subject}],
+				"message":[{"value":this.message}],
+				
 		}).then(response => { 
 				console.log('Message sent !')
 			})
@@ -65,7 +67,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" src="bulma" scoped>
 body {
 	background: #f1f1f1;
 	font-family: 'Roboto', sans-serif;

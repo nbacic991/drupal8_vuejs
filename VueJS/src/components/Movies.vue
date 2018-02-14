@@ -1,8 +1,9 @@
 <template>
-<div >
-    <h1>This is my movies page</h1>
-    <input type="text" v-model="search" placeholder="Search by title">
-    <div class="movies container">
+<div class="container">
+    <div class="control">
+        <input class="input" type="text" v-model="search" placeholder="Search by title">
+    </div>
+    <div class="movies">
         <div v-for="movie in filteredMovies" :key="movie.title" class="single-movie">
             <p class="title">{{movie.title}}</p>
             <router-link :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.nid">
@@ -14,7 +15,7 @@
             active-class="is-active"
             class="link"
             :to="{ name: 'movie', params: { id: movie.nid } }" :key="movie.title">
-          Read More ...
+          <button class="button">Read More ...</button>
         </router-link>
             <br>
         </div>

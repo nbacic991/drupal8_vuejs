@@ -7,6 +7,7 @@
         <h3>{{item.title}}</h3>
         <p>{{item.body}}</p>
       </div>
+      <router-link to="/movies">See more...</router-link>
       </aside>
       <main>
         
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-const url = "http://drupal8vue.dev.loc/api/front-page";
+const moviesUrl = "http://drupal8vue.dev.loc/api/front-page";
 
 export default {
     
@@ -28,7 +29,7 @@ export default {
       }
     },
     mounted() {
-      fetch(url)
+      fetch(moviesUrl)
         .then(response => response.json())
         .then((data) => {
           this.items = data;
@@ -44,7 +45,12 @@ export default {
   grid-template-columns: 1fr 2fr 1fr;
   grid-column-gap: 20px;
   aside {
-    background-color: red;
+    border: 1px solid gray;
+    h2 {
+      border-bottom: 1px solid gray;
+      width: 50%;
+      margin: auto;
+    }
     .single-movie {
       padding: 30px;
       overflow: hidden;
@@ -59,7 +65,7 @@ export default {
     }
   }
   main {
-    background-color: blue;
+    border: 1px solid gray;
   }
 }
 </style>
