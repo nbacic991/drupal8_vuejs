@@ -18,16 +18,12 @@
             </router-link>
             <br>
         </div>
-        <div class="text-center" v-show="actorsLoading">
-            Loading...
-        </div>
     </div>
 </div>
 </template>
 
 <script>
 import axios from 'axios'
-import InfiniteLoading from 'vue-infinite-loading';
 
 /**
  * Declaring variables
@@ -44,7 +40,6 @@ export default {
 
     created() {
       this.getAllActors();
-      window.addEventListener('scroll', this.handleScroll)
     },
     components: {
         InfiniteLoading,
@@ -57,13 +52,6 @@ export default {
         },
     },
     methods: {
-        handleScroll () {
-            if (document.body.scrollHeight - window.innerHeight - document.body.scrollTop <= 5) {
-                if (this.nextPage != null) {
-                this.getPosts(this.nextPage)
-                }
-            }
-        },
         getAllActors() {
         axios.get(this.endpoint)
           .then(response => {
