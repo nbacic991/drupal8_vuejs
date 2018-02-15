@@ -35,7 +35,7 @@ export default new Router({
     {
       path: '/actors',
       name: 'actors',
-      component: Actors
+      component: Actors,
     },
     {
       path: '/actors/:id',

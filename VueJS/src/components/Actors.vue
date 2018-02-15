@@ -18,7 +18,9 @@
             </router-link>
             <br>
         </div>
+        <div id="actors-list-bottm"></div>
     </div>
+    
 </div>
 </template>
 
@@ -40,9 +42,7 @@ export default {
 
     created() {
       this.getAllActors();
-    },
-    components: {
-        InfiniteLoading,
+      
     },
     computed: {
         filteredActors: function() {
@@ -61,18 +61,29 @@ export default {
             console.log('-----error-------');
             console.log(error);
           })
-        }
+        },
     }
   }
 </script>
 
-<style lang="scss" src="bulma" scoped>
+<style lang="scss" scoped>
+.control {
+    margin-bottom: 10px;
+}
 .actors {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     .single-actor {
-        flex-basis: 24%;
+        flex-basis: 10%;
+        padding: 10px;
+        border: 1px solid gray;
+    }
+    .actors-list-bottm {
+        margin-top: 50px;
+        height: 50px;
+        background: blue;
+        width: 100%;
     }
 }
 </style>

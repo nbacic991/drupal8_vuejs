@@ -8,6 +8,7 @@ import VueYouTubeEmbed from 'vue-youtube-embed'
 Vue.use(VueYouTubeEmbed)
 Vue.use(VueResource);
 
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
