@@ -45,17 +45,17 @@ export default {
 	},
 	methods: {
       	sendMessage() {
-			axios.post(this.endpoint, { 
+			axios.post(this.endpoint, {
+				credentials: "same-origin",
 				headers: {
-				'Authorization': 'Basic YWRtaW46YWRtaW4=',
-				'Content-Type': 'application/hal+json'
-				},
+					'Authorization': 'Basic YWRtaW46YWRtaW4=',
+					'Content-Type': 'application/hal+json'
+					},
 				"contact_form":[{"target_id":"feedback"}],
 				"name":[{"value":this.name}],
 				"mail":[{"value":this.mail}],
 				"subject":[{"value":this.subject}],
 				"message":[{"value":this.message}],
-				
 		}).then(response => { 
 				console.log('Message sent !')
 			})

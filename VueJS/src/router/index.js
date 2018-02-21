@@ -7,6 +7,7 @@ import Contact from '@/components/Contact'
 import Actors from '@/components/Actors'
 import SingleActor from '@/components/SingleActor'
 
+
 Vue.use(Router)
 
 export default new Router({
