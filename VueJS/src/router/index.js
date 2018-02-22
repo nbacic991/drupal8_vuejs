@@ -3,14 +3,16 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Movies from '@/components/Movies'
 import SingleMovie from '@/components/SingleMovie'
-import Contact from '@/components/Contact'
 import Actors from '@/components/Actors'
 import SingleActor from '@/components/SingleActor'
+import Login from '@/components/Login'
+import Contact from '../components/Contact.vue'
 
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -29,11 +31,6 @@ export default new Router({
       props: true,
     },
     {
-      path: '/contact',
-      name: 'contact',
-      component: Contact
-    },
-    {
       path: '/actors',
       name: 'actors',
       component: Actors,
@@ -43,6 +40,14 @@ export default new Router({
       name: 'actor',
       component: SingleActor,
       props: true,
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/contact',
+      component: Contact
     }
   ]
 })
