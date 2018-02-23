@@ -1,0 +1,47 @@
+vuejs.settings:
+  type: config_object
+  label: Vue.js settings
+  maping:
+    libaries:
+      type: mapping
+      label: Libraries
+    mapping:
+      vue:
+        type: mapping
+        label: Vue settings
+        mapping:
+          installation:
+            type: string
+            label: Vue installation
+          minified:
+            type: boolean
+            label: minified
+          version:
+            type: string
+            label: Vue version
+      vue_router:
+        type: mapping
+        label: vue-router settings
+        mapping:
+          installation:
+            type: string
+            label: vue-router installation
+          minified:
+            type: boolean
+            label: minified
+          version:
+            type: string
+            label: vue-router version
+      vue_resource:
+        type: mapping
+        label: vue-resource settings
+        mapping:
+          installation:
+            type: string
+            label: vue-resource installation
+          minified:
+            type: boolean
+            label: minified
+          version:
+            type: string
+            label: vue-resourc version
