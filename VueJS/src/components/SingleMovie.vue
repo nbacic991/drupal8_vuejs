@@ -1,20 +1,25 @@
 
 <template>
 <div >
-    <div class="movie" v-if="movie">
+    <div class="movie" v-if="movie" >
         <div class="left">
-          <h1 class="movie__title">{{ movie[0].title }}</h1>
-          <img v-bind:src="'http://drupal8vue.dev.loc' + movie[0].field_movie_poster" />
-          <p class="movie__body"><strong>Description : </strong>{{ movie[0].body }}</p>
-          <p><strong>Actors :</strong> {{movie[0].field_actors}}</p>
-          <p><strong>Genre: </strong>{{movie[0].field_movie_genre}}</p>
+          <h1 class="movie__title">{{ movie[0].title[0].value }}</h1>
+          <img v-bind:src="movie[0].field_movie_poster[0].value" />
+          <p class="movie__body" v-html="movie[0].body[0].value"><strong>Description : </strong></p>
+          <strong>Actors :</strong>
+          <span v-for="(actor, key) in movie[0].field_actors" :key="key">
+            {{actor.value}},
+          </span>
+          <p><strong>Genre: </strong>{{movie[0].field_genre[0].value}}</p>
         </div>
         <div class="right">
           <strong>Official trailer: </strong>
-          <youtube v-bind:video-id="movie[0].field_trailer | subStr"></youtube>
+          <youtube v-bind:video-id="movie[0].field_trailer[0].uri | subStr"></youtube>
         </div>
         <br>
-        <router-link to="/movies">Go back</router-link>
+        <router-link to="/movies">
+          <button class="btn">Go back</button>
+        </router-link>
     </div>
 </div>
 </template>
@@ -29,12 +34,12 @@
     data() {
       return {
         movie: null,
-        endpoint: 'http://drupal8vue.dev.loc/api/movies/',
+        endpoint: 'http://drupal8vue.dev.loc/api/movies-test/',
       }
     },
     methods: {
       getMovie(id) {
-        axios(this.endpoint + id)
+        axios.get(this.endpoint + id)
           .then(response => {
             this.movie = response.data
           })

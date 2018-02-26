@@ -6,7 +6,8 @@ import SingleMovie from '@/components/SingleMovie'
 import Actors from '@/components/Actors'
 import SingleActor from '@/components/SingleActor'
 import Login from '@/components/Login'
-import Contact from '../components/Contact.vue'
+import Contact from '@/components/Contact.vue'
+import CreateMovie from '@/components/CreateMovie' 
 
 
 Vue.use(Router)
@@ -48,6 +49,10 @@ export default new Router({
     {
       path: '/contact',
       component: Contact
+    },
+    {
+      path: '/create',
+      component: CreateMovie
     }
   ]
 })
