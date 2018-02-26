@@ -7,7 +7,9 @@ import Actors from '@/components/Actors'
 import SingleActor from '@/components/SingleActor'
 import Login from '@/components/Login'
 import Contact from '@/components/Contact.vue'
-import CreateMovie from '@/components/CreateMovie' 
+import CreateMovie from '@/components/CreateMovie'
+import DeleteMovie from '@/components/DeleteMovie'
+import RegisterUser from '@/components/RegisterUser'
 
 
 Vue.use(Router)
@@ -53,6 +55,17 @@ export default new Router({
     {
       path: '/create',
       component: CreateMovie
+    },
+    {
+      path: '/delete/:id',
+      name: 'delete',
+      component: DeleteMovie,
+      props: true
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterUser
     }
   ]
 })

@@ -1,17 +1,30 @@
 <template>
 <div class="container">
+   
     <div class="control">
         <input class="input" type="text" v-model="search" placeholder="Search by title">
+        <br>
+        <router-link class="btn btn-success" to='/create'>Create new movie</router-link>
     </div>
     <div class="movies">
-        <div v-for="movie in movies" :key="movie.title" class="single-movie">
+        <div v-for="movie in movies" :key="movie.nid[0].value / 2" class="single-movie">
             <p class="title">{{movie.title[0].value}}</p>
-            <router-link :to="{ name: 'movie', params: { id: movie.nid[0].value } }" :key="movie.nid[0].value">
-                <img v-bind:src="movie.field_movie_poster[0].url" />
+            <router-link :to="{ name: 'movie', params: { id: movie.nid[0].value } }">
+                <!-- <img v-bind:src="movie.field_movie_poster[0].url" /> -->
                 <br>
-                <button class="btn">Read More ...</button>
+                <br>
+                <button class="btn btn-primary">Read More ...</button>
             </router-link>
             <br>
+            <br>
+            <span v-for="(genre, index) in movie.field_genre" :key="index">
+                {{genre.value}},
+            </span>
+            <div class="col-md-3">
+                <router-link :to="{ name: 'delete', params: { id: movie.nid[0].value } }">
+                    <button class="btn btn-danger">Delete Movie</button>
+                </router-link>
+            </div>
         </div>
     </div>
 </div>
@@ -53,23 +66,6 @@ export default {
 
 <style lang="scss">
 
-.btn {
-    border-radius: 5px;
-    color: #e8e8e8;
-    background-color: red;
-    border: 0;
-    padding: 10px;
-    font-weight: 700;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    &:hover {
-        background-color: antiquewhite;
-        -moz-transition: 300ms;
-        -o-transition: 300ms;
-        transition: 300ms;
-        color: #469953;
-    }
-
-}
 .movies {
     display: grid;
     grid-template-columns: repeat(3,1fr);
