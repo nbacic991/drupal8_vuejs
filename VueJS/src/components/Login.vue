@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div>
+    <div v-if="isLoggedIn == false">
+        <h3>Login</h3>
         <input type="text" v-model="name">
         <input type="password" v-model="pass">
+        <br>
         <button @click="LogIn">Login</button>
     </div>
-    <div>
+    <div v-if="isLoggedIn == true">
         Hello {{this.name}}
+        <br>
         <button @click="LogOut">Logout</button>
     </div>
   </div>
@@ -18,14 +21,12 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            // name: this.name,
-            // pass: this.pass,
-            name: 'Nemanja',
-            pass: 'nemus',
+            name: this.name,
+            pass: this.pass,
             urlIn: 'http://drupal8vue.dev.loc/user/login?_format=json',
-            urlOut: 'https://drupal8vue.dev.loc/user/logout?_format=json',
-            csrfToken: '0AiRM0_Huv4GLsdvbAVDejXcaazrYWxq_5uMmmnyKlg',
-            logout_token: 'Znn8h_T6J9K8NEamb_jjUPdrRN6WO6HhPK5ltMpIJTk',
+            urlOut: 'https://drupal8vue.dev.loc/user/logout?_format=json&token=',
+            csrfToken: '',
+            logoutToken: '',
             isLoggedIn: false,
         }
     },
@@ -36,35 +37,33 @@ export default {
             'X-CSRF-TOKEN': 'JyGYuXPQiagnYKZkl_JAPGdRoj3tZiDulxTAH6xETjU'
         }
     },
-    mounted(){
-
-    },
     methods: {
         LogIn(){
+            let data = JSON.stringify({
+                name: this.name,
+                pass: this.pass
+            });
+            this.$http.post(this.urlIn , data, {
+                credentials: "same-origin",
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                }
+            )
+            .then(response => {
+                this.response = response.data;
+                this.csrfToken = response.data.csrf_token;
+                this.logoutToken = response.data.logout_token;
+                console.log(this.logoutToken)
+                this.isLoggedIn = true;
+            });
+
             console.log('Logged In');
-        let data = JSON.stringify({
-            name: this.name,
-            pass: this.pass
-        });
-        this.$http.post(this.urlIn , data, {
-          credentials: "same-origin",
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        )
-        .then(response => {
-            this.response = response.data;
-            this.csrfToken = response.data.csrf_token;
-            this.logoutToken = response.data.logout_token;
-            console.log(response.data.logout_token)
-            this.isLoggedIn = true;
-        });
-      },
-      LogOut() {
-        console.log('Logged out');
-        this.isLoggedIn = false
-      }
+        },
+        // localStorage.getItem('csrf_token')
+        LogOut() {
+            this.isLoggedIn = false;
+        }
     }
 }
 </script>
