@@ -24,7 +24,7 @@ export default {
             name: this.name,
             pass: this.pass,
             urlIn: 'http://drupal8vue.dev.loc/user/login?_format=json',
-            urlOut: 'https://drupal8vue.dev.loc/user/logout?_format=json&token=',
+            urlOut: 'http://drupal8vue.dev.loc/user/logout?_format=json',
             csrfToken: '',
             logoutToken: '',
             isLoggedIn: false,
@@ -58,11 +58,20 @@ export default {
                 this.isLoggedIn = true;
             });
 
-            console.log('Logged In');
+            console.log('Logged In !');
         },
-        // localStorage.getItem('csrf_token')
         LogOut() {
-            this.isLoggedIn = false;
+            this.$http.get('http://drupal8vue.dev.loc/user/logout', {
+                credentials: "same-origin",
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                }
+            );
+            this.name = ''
+            this.pass = ''
+            this.isLoggedIn = false
+            console.log('Logged Out !');
         }
     }
 }
