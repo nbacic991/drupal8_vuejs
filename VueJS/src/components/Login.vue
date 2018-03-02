@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="isLoggedIn = !isLoggedIn">
+    <div>
         <input type="text" v-model="name">
         <input type="password" v-model="pass">
         <button @click="LogIn">Login</button>
     </div>
-    <div v-if="isLoggedIn = !isLoggedIn">
-        Hello {{name}}
+    <div>
+        Hello {{this.name}}
         <button @click="LogOut">Logout</button>
     </div>
   </div>
@@ -18,8 +18,10 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            name: this.name,
-            pass: this.pass,
+            // name: this.name,
+            // pass: this.pass,
+            name: 'Nemanja',
+            pass: 'nemus',
             urlIn: 'http://drupal8vue.dev.loc/user/login?_format=json',
             urlOut: 'https://drupal8vue.dev.loc/user/logout?_format=json',
             csrfToken: '0AiRM0_Huv4GLsdvbAVDejXcaazrYWxq_5uMmmnyKlg',
@@ -59,6 +61,10 @@ export default {
             this.isLoggedIn = true;
         });
       },
+      LogOut() {
+        console.log('Logged out');
+        this.isLoggedIn = false
+      }
     }
 }
 </script>
