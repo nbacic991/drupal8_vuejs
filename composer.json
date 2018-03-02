@@ -1,0 +1,11 @@
+{
+    "require": {
+        "asm89/stack-cors": "^1.2"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    }
+}

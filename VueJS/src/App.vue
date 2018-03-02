@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-    <router-link to="/">Home</router-link>
-    <router-link to="movies">Movies</router-link>
+    <Navigation />
+    <router-view/> 
   </div>
 </template>
 
 <script>
 import Home from './components/Home'
 import Movies from './components/Movies'
+import Navigation from './components/Navigation'
+import Contact from './components/Contact'
 
 export default {
   name: 'App',
   components: {
     Home,
-    Movies    
+    Movies,
+    Navigation,
+    Contact
   }
 }
 </script>
