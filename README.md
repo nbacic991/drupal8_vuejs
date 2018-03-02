@@ -6,7 +6,7 @@ If you don't have vue-cli installed globally type in the following:
 
     npm i -g vue-cli
 
-###Step 1
+### Step 1
 
 Enter your folder where you've cloned this repo and type:
     
