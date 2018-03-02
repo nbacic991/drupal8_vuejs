@@ -25,7 +25,7 @@ Open your favourite browser and in your URL bar type:
 When your container is up, you have to enter your php shell and import database. Open your terminal and type in:
 
     1. docker-compose exec --user 82 php sh
-    2. drush sql-cli < ../databases/movies.sql
+    2. drush sql-cli < ../databases/03.02.2018.sql
     
 ### Step 4 
 
