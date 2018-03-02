@@ -7,7 +7,7 @@
         <router-link class="btn btn-success" to='/create'>Create new movie</router-link>
     </div>
     <div class="movies">
-        <div v-for="movie in movies" :key="movie.nid[0].value / 2" class="single-movie">
+        <div v-for="movie in filteredMovies" :key="movie.nid[0].value / 2" class="single-movie">
             <p class="title">{{movie.title[0].value}}</p>
             <router-link :to="{ name: 'movie', params: { id: movie.nid[0].value } }">
                 <!-- <img v-bind:src="movie.field_movie_poster[0].url" /> -->
@@ -47,7 +47,11 @@ export default {
     },
 
     computed: {
-
+        filteredMovies: function() {
+            return this.movies.filter((movie) => {
+                return movie.title[0].value.match(this.search);
+            });
+        },
     },
     methods: {
       getAllMovies() {
