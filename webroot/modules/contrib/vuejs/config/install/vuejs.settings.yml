@@ -1,0 +1,13 @@
+libraries:
+  vue:
+    installation: cdnjs
+    minified: true
+    version: 2.0.1
+  vue_router:
+    installation: cdnjs
+    minified: true
+    version: 2.0.0
+  vue_resource:
+    installation: cdnjs
+    minified: true
+    version: 1.0.3
