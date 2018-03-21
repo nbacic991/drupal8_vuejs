@@ -1,14 +1,11 @@
 <?php
-/**
- * @file
- * Create the menu item REST resource.
- */
 
 namespace Drupal\rest_menu_items\Plugin\rest\resource;
 
 use Drupal\Core\Cache\CacheableResponseInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\Core\Menu\MenuLinkDefault;
 use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
@@ -102,11 +99,12 @@ class RestMenuItemsResource extends ResourceBase {
    *
    * Returns a list of menu items for specified menu name.
    *
-   * @param string|NULL $menu_name
+   * @param string|null $menu_name
    *   The menu name.
    *
    * @return \Drupal\rest\ResourceResponse
    *   The response containing a list of bundle names.
+   *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    */
   public function get($menu_name = NULL) {
@@ -130,7 +128,7 @@ class RestMenuItemsResource extends ResourceBase {
       $menu_tree = \Drupal::menuTree();
       $tree = $menu_tree->load($menu_name, $parameters);
 
-      // Return if the menu does not exist or has no entries
+      // Return if the menu does not exist or has no entries.
       if (empty($tree)) {
         return new ResourceResponse($tree);
       }
@@ -149,14 +147,15 @@ class RestMenuItemsResource extends ResourceBase {
 
       $this->getMenuItems($menu['#items'], $this->menuItems);
 
-      // Return response
+      // Return response.
       $response = new ResourceResponse(array_values($this->menuItems));
 
-      // Configure caching for minDepth and maxDepth parameters
+      // Configure caching for minDepth and maxDepth parameters.
       if ($response instanceof CacheableResponseInterface) {
-        $response->addCacheableDependency(new RestMenuItemsCachableDepenency($menu_name, $this->minDepth, $this->maxDepth));
+        $response->addCacheableDependency(new RestMenuItemsCacheableDependency($menu_name, $this->minDepth, $this->maxDepth));
       }
 
+      // Return the JSON response.
       return $response;
     }
     throw new HttpException(t("Menu name was not provided"));
@@ -176,6 +175,7 @@ class RestMenuItemsResource extends ResourceBase {
     $config = $this->configFactory->get('rest_menu_items.config');
     $outputValues = $config->get('output_values');
 
+    // Loop through the menu items.
     foreach ($tree as $item_value) {
       /* @var $org_link \Drupal\Core\Menu\MenuLinkDefault */
       $org_link = $item_value['original_link'];
@@ -222,9 +222,9 @@ class RestMenuItemsResource extends ResourceBase {
   }
 
   /**
-   * Generate the element value.
+   * Generate the menu element value.
    *
-   * @param $returnArray
+   * @param array $returnArray
    *   The return array we want to add this item to.
    * @param string $key
    *   The key to use in the output.
@@ -235,7 +235,7 @@ class RestMenuItemsResource extends ResourceBase {
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    */
-  private function getElementValue(&$returnArray, $key, $link, $url) {
+  private function getElementValue(array &$returnArray, $key, MenuLinkDefault $link, Url $url) {
     $external = $url->isExternal();
     $existing = TRUE;
     $value = NULL;
@@ -246,7 +246,8 @@ class RestMenuItemsResource extends ResourceBase {
     else {
       try {
         $uri = $url->getInternalPath();
-      } catch (\UnexpectedValueException $e) {
+      }
+      catch (\UnexpectedValueException $e) {
         $uri = $relative = Url::fromUri($url->getUri())->toString();
         $existing = FALSE;
       }

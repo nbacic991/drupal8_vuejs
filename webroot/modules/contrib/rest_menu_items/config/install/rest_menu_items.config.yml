@@ -1,16 +1,15 @@
-rest_menu_items:
-  output_values:
-    - key
-    - title
-    - description
-    - uri
-    - alias
-    - external
-    - absolute
-    - relative
-    - existing
-    - weight
-    - expanded
-    - enabled
-    - uuid
-    - options
+output_values:
+  key: key
+  title: title
+  description: description
+  uri: uri
+  alias: alias
+  external: external
+  absolute: absolute
+  relative: relative
+  existing: existing
+  weight: weight
+  expanded: expanded
+  enabled: enabled
+  uuid: uuid
+  options: options
